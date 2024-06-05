@@ -7,7 +7,7 @@ import config from './config.js';
 connectDB();
 
 const port = config.PORT || 8000
-
+ 
 // Iniciar el servidor
 app.listen(port, () => {
   console.log("Servidor iniciado en el puerto: ",port);
