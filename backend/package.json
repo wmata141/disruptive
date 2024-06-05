@@ -1,0 +1,14 @@
+{
+  "name": "disruptive",
+  "version": "1.0.0",
+  "description": "disruptive",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "disruptive"
+  ],
+  "author": "wxmm141",
+  "license": "ISC"
+}
