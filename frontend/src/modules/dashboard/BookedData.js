@@ -19,7 +19,7 @@ const bookedData = [
     title: "SOLD",
     value: 2800,
     percent: 70,
-    color: colors.green[600]
+    color: colors.blue[600]
   }
 ];
 

@@ -62,10 +62,10 @@ const Sidebar = ({ sidebarWidth }) => {
       <ListItem key={props.index} disableGutters disablePadding sx={{ py: 0.5 }} onClick={() => handleClick(props.item)}>
         <ListItemButton sx={{
           borderRadius: "10px",
-          bgcolor: props.isActive ? colors.green[600] : "",
+          bgcolor: props.isActive ? colors.blue[600] : "",
           color: props.isActive ? colors.common.white : "",
           "&:hover": {
-            bgcolor: props.isActive ? colors.green[600] : "",
+            bgcolor: props.isActive ? colors.blue[600] : "",
             color: props.isActive ? colors.common.white : "",
           }
         }}>

@@ -150,7 +150,7 @@ const LoginView = () => {
                     },
                     position: "absolute",
                     left: 0,
-                    color: colors.green[600]
+                    color: colors.blue[600]
                   }}
                 />
               </Box>

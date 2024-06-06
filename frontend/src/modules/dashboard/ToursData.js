@@ -6,7 +6,7 @@ const toursData = [
   {
     title: "Sold out",
     value: 390,
-    color: colors.green[600]
+    color: colors.blue[600]
   },
   {
     title: "Availabe",
@@ -35,7 +35,7 @@ const ToursData = () => {
               sx={{
                 position: "absolute",
                 left: 0,
-                color: colors.green[600],
+                color: colors.blue[600],
                 [`& .${circularProgressClasses.circle}`]: {
                   strokeLinecap: "round"
                 }

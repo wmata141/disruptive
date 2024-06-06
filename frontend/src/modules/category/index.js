@@ -156,7 +156,7 @@ const CategoryView = () => {
       <Paper sx={{ margin: '1%' }}>
         <div style={{ margin: '1%', paddingTop: '1%' }}>
           <Button
-            style={{ backgroundColor: colors.green[600], marginRight: '1%' }}
+            style={{ backgroundColor: colors.blue[500], marginRight: '1%' }}
             onClick={functionAdd}
             variant="contained"
             disabled={user.type !== 'admin'}
@@ -177,7 +177,7 @@ const CategoryView = () => {
               <TableContainer>
                 <Table>
                   <TableHead>
-                    <TableRow style={{ backgroundColor: colors.green[600] }}>
+                    <TableRow style={{ backgroundColor: colors.blue[500] }}>
                       {columns.map((column) =>
                         <TableCell key={column.id} style={{ color: 'white' }}>{column.name}</TableCell>
                       )}
@@ -201,10 +201,10 @@ const CategoryView = () => {
                             </TableCell>
                             <TableCell>
                               <IconButton onClick={e => { handleEdit(row) }} disabled={user.type !== 'admin'}>
-                                <EditIcon style={{ color: colors.green[600], cursor: 'pointer' }} ></EditIcon>
+                                <EditIcon style={{ color: colors.blue[500], cursor: 'pointer' }} ></EditIcon>
                               </IconButton>
                               <IconButton onClick={e => { handleRemove(row._id) }} disabled={user.type !== 'admin'}>
-                                <DeleteIcon style={{ color: colors.red[900], cursor: 'pointer' }} ></DeleteIcon>
+                                <DeleteIcon style={{ color: colors.red[500], cursor: 'pointer' }} ></DeleteIcon>
                               </IconButton>
                             </TableCell>
                           </TableRow>

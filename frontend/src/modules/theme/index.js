@@ -153,7 +153,7 @@ const ThemeView = () => {
       <Paper sx={{ margin: '1%' }}>
         <div style={{ margin: '1%', paddingTop: '1%' }}>
           <Button
-            style={{ backgroundColor: colors.green[600], marginRight: '1%' }}
+            style={{ backgroundColor: colors.blue[600], marginRight: '1%' }}
             onClick={functionAdd}
             variant="contained"
             disabled={user.type === 'reader'}
@@ -173,7 +173,7 @@ const ThemeView = () => {
               <TableContainer>
                 <Table>
                   <TableHead>
-                    <TableRow style={{ backgroundColor: colors.green[600] }}>
+                    <TableRow style={{ backgroundColor: colors.blue[600] }}>
                       {columns.map((column) =>
                         <TableCell key={column.id} style={{ color: 'white' }}>{column.name}</TableCell>
                       )}
@@ -199,7 +199,7 @@ const ThemeView = () => {
                             </TableCell>
                             <TableCell>
                               <IconButton disabled={user.type === 'reader'}>
-                                <EditIcon onClick={e => { handleEdit(row) }} style={{ color: colors.green[600], cursor: 'pointer' }} ></EditIcon>
+                                <EditIcon onClick={e => { handleEdit(row) }} style={{ color: colors.blue[600], cursor: 'pointer' }} ></EditIcon>
                               </IconButton>
                               <IconButton disabled={user.type === 'reader'}>
                                 <DeleteIcon onClick={e => { handleRemove(row._id) }} style={{ color: colors.red[900], cursor: 'pointer' }} ></DeleteIcon>
