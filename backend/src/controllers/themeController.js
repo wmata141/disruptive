@@ -51,9 +51,10 @@ export const postTheme = async (req, res) => {
 };
 
 export const updateTheme = async (req, res) => {
+  console.log("req.body ==>",req.body);
   try {
     const { id } = req.params;
-    const { name, description } = req.body;
+    const { name, description, permission } = req.body;
 
     // Search a theme by id in the database
     const theme = await Theme.findById(id);
@@ -63,14 +64,14 @@ export const updateTheme = async (req, res) => {
 
     // Check if a category with the same name already exists
     const existingTheme = await Theme.find({ name });
-    if (existingTheme.length > 0) {
+    if (existingTheme.length > 1) {
       return res.status(404).json({ message: 'There is already a theme with the same name' });
     }
 
     // Update theme data
     if (name) theme.name = name;
     if (description) theme.description = description;
-    if (filename) theme.filename = filename;
+    if (permission) theme.permission = permission;
 
     await theme.save();
 

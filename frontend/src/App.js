@@ -8,6 +8,7 @@ import MainLayout from './components/MainLayout';
 import LoginView from './modules/login';
 import DashboardView from './modules/dashboard';
 import Category from './modules/category';
+import Theme from './modules/theme';
 
 const App = () => {
   const globalStyles = {
@@ -31,6 +32,7 @@ const App = () => {
             <Route path="/dashboard" element={<MainLayout />}>
               <Route path="" element={<DashboardView />} />
               <Route path="/dashboard/category" element={<Category />} />
+              <Route path="/dashboard/theme" element={<Theme />} />
             </Route>
           </Route>
 

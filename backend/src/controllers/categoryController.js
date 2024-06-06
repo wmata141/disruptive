@@ -70,7 +70,7 @@ export const updateCategory = async (req, res) => {
 
     // Check if a category with the same name already exists
     const existingCategory = await Category.find({ name });    
-    if (existingCategory.length > 0) {    
+    if (existingCategory.length > 1) {    
       return res.status(404).json({ message: 'There is already a category with the same name' });
     }
         
