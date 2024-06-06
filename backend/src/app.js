@@ -1,16 +1,19 @@
 import express from 'express';
 import cors from "cors";
 
-import welcomeRoutes from './route/welcomeRoutes.js';
+import welcomeRoutes from './routes/welcomeRoutes.js';
+import authRoutes from './routes/authRoutes.js';
+import userRoutes from './routes/userRoutes.js';
 
 const app = express();
 app.use(cors());
 
-// Configurar middlewares
+// Configure middlewares
 app.use(express.json());
 
-// Configurar rutas
+// Configure routes
 app.use('/', welcomeRoutes);
-
+app.use('/auth', authRoutes);
+app.use('/user', userRoutes);
 
 export default app

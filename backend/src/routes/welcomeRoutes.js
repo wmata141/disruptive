@@ -4,10 +4,10 @@ import config from '../config.js';
 const router = express.Router();
 const port = config.PORT || 8000
 
-// Ruta welcome
+// Welcome route
 router.get("/", (req, res) => {
     try {
-        res.status(200).json({"Welcome to port:": port});
+        res.status(200).json({ "Welcome to port:": port });
 
     } catch (error) {
         console.error(error);

@@ -3,31 +3,31 @@ import config from './config.js';
 
 const connectDB = async () => {
   try {
-    // Crear conexión a MongoDB utilizando la URI de configuración
+    // Create connection to MongoDB using configuration URI
     const connection = await mongoose.connect(config.MONGO_URL)
 
-    // Manejador de evento 'connected' para indicar la conexión exitosa a MongoDB
+    // 'connected' event handler to indicate successful connection to MongoDB
     connection.connection.on('connected', () => {
-      console.log('Conexión exitosa a MongoDB');
+      console.log('Successful connection to MongoDB');
     });
 
-    // Manejador de evento 'error' para capturar errores en la conexión a MongoDB
+    // 'error' event handler to catch errors on connection to MongoDB
     connection.connection.on('error', (error) => {
-      console.error(`Error al conectar con MongoDB: ${error.message}`);
+      console.error(`Error connecting to MongoDB: ${error.message}`);
     });
 
-    // Manejador de evento 'disconnected' para indicar la desconexión de MongoDB
+    // 'disconnected' event handler to indicate disconnection from MongoDB
     connection.connection.on('disconnected', () => {
-      console.log('Desconexión de MongoDB');
+      console.log('Disconnecting from MongoDB');
     });
 
-    // Manejador de evento 'reconnected' para indicar la reconexión a MongoDB
+    // 'reconnected' event handler to indicate reconnection to MongoDB
     connection.connection.on('reconnected', () => {
-      console.log('Reconexión exitosa a MongoDB');
+      console.log('Successful reconnection to MongoDB');
     });
 
   } catch (error) {
-    console.error(`Error al conectar con MongoDB: ${error.message}`);
+    console.error(`Error connecting to MongoDB: ${error.message}`);
     process.exit(1);
   }
 };
