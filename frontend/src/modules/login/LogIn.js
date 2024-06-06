@@ -4,9 +4,8 @@ import { Box, Button, Stack, TextField } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { AuthContext } from "../../services/AuthContext";
-import config from '../../config'
 
-const API_URL = config.API_URL
+const API_URL = process.env.REACT_APP_API_URL
 
 const LogIn = (props) => {
   const [email, setEmail] = useState('');
@@ -48,7 +47,11 @@ const LogIn = (props) => {
       }, 1000);
 
     } catch (error) {
-      toast.error(error.response.data.message)
+      if (error.response) {
+        toast.error(error.response.data.message)
+      } else {
+        toast.error(error.message)
+      }
 
       setTimeout(() => {
         props.setOnRequest(false);

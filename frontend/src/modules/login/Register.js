@@ -4,9 +4,8 @@ import { useNavigate } from "react-router-dom";
 import { Box, Button, Stack, TextField, Select, MenuItem } from "@mui/material";
 import { toast } from "react-toastify";
 import { AuthContext } from "../../services/AuthContext";
-import config from '../../config'
 
-const API_URL = config.API_URL
+const API_URL = process.env.REACT_APP_API_URL
 
 const Register = (props) => {
   const [name, setName] = useState('');
@@ -52,7 +51,11 @@ const Register = (props) => {
       }, 1000);
 
     } catch (error) {      
-      toast.error(error.response.data.message)
+      if (error.response) {
+        toast.error(error.response.data.message)
+      } else {
+        toast.error(error.message)
+      }
 
       setTimeout(() => {
         props.setOnRequest(false);
