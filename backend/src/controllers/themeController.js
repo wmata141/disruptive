@@ -50,8 +50,7 @@ export const postTheme = async (req, res) => {
   }
 };
 
-export const updateTheme = async (req, res) => {
-  console.log("req.body ==>",req.body);
+export const updateTheme = async (req, res) => {  
   try {
     const { id } = req.params;
     const { name, description, permission } = req.body;

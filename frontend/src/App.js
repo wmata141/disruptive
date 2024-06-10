@@ -9,13 +9,12 @@ import LoginView from './modules/login';
 import DashboardView from './modules/dashboard';
 import Category from './modules/category';
 import Theme from './modules/theme';
+import Content from './modules/content';
+import ContentDetail from './modules/content/ContentDetail';
 
 const App = () => {
-  const globalStyles = {
-    a: {
-      color: "unset",
-      textDecoration: "none"
-    }
+  const globalStyles = { 
+    a: { color: "unset", textDecoration: "none" },
   };
 
   return (
@@ -33,6 +32,8 @@ const App = () => {
               <Route path="" element={<DashboardView />} />
               <Route path="/dashboard/category" element={<Category />} />
               <Route path="/dashboard/theme" element={<Theme />} />
+              <Route path="/dashboard/content" element={<Content />} />
+              <Route path="/dashboard/content/detail" element={<ContentDetail />} />
             </Route>
           </Route>
 

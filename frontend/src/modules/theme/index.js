@@ -9,13 +9,6 @@ import { AuthContext } from "../../services/AuthContext";
 import { Autocomplete, MenuItem } from "@mui/material";
 import CheckIcon from "@mui/icons-material/Check";
 
-const columns = [
-  { id: 'name', name: 'Name' },
-  { id: 'description', name: 'Description' },
-  { id: 'permission', name: 'Permission' },
-  { id: 'action', name: 'Action' }
-]
-
 const ThemeView = () => {
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
@@ -35,7 +28,7 @@ const ThemeView = () => {
 
   const [permission, setPermission] = useState([]);
 
-  const { user } = useContext(AuthContext);  
+  const { user } = useContext(AuthContext);
 
   useEffect(() => {
     if (Object.keys(editObj).length > 0) {
@@ -49,7 +42,7 @@ const ThemeView = () => {
 
   useEffect(() => {
     fetchData();
-  }, [])  
+  }, [])
 
   const fetchData = async () => {
     setLoading(true)
@@ -153,7 +146,7 @@ const ThemeView = () => {
       <Paper sx={{ margin: '1%' }}>
         <div style={{ margin: '1%', paddingTop: '1%' }}>
           <Button
-            style={{ backgroundColor: colors.blue[600], marginRight: '1%' }}
+            style={{ backgroundColor: colors.blue[600], marginRight: '1%', height: '2.5rem' }}
             onClick={functionAdd}
             variant="contained"
             disabled={user.type === 'reader'}
@@ -173,10 +166,11 @@ const ThemeView = () => {
               <TableContainer>
                 <Table>
                   <TableHead>
-                    <TableRow style={{ backgroundColor: colors.blue[600] }}>
-                      {columns.map((column) =>
-                        <TableCell key={column.id} style={{ color: 'white' }}>{column.name}</TableCell>
-                      )}
+                    <TableRow style={{ backgroundColor: colors.blue[600] }}>                      
+                      <TableCell style={{ color: 'white' }} >{'Name'}</TableCell>
+                      <TableCell style={{ color: 'white' }} >{'Description'}</TableCell>
+                      <TableCell style={{ color: 'white' }} >{'Permission'}</TableCell>
+                      <TableCell style={{ color: 'white', width: '120px' }} >{'Action'}</TableCell>
                     </TableRow>
                   </TableHead>
 
@@ -189,20 +183,20 @@ const ThemeView = () => {
                             <TableCell>{row.name}</TableCell>
                             <TableCell>{row.description}</TableCell>
                             <TableCell style={{ padding: 0 }}>
-                              {
-                                row.permission.map((item) => {
-                                  return (
-                                    <h4 key={item.name} style={{ padding: 0, margin: 0 }}>{item.name}</h4>
-                                  )
-                                })
+                              {row.permission
+                                .map(item => item.name)
+                                .sort((a, b) => a.toLowerCase().localeCompare(b.toLowerCase()))
+                                .map(name => (
+                                  <h4 key={name} style={{ padding: 0, margin: 0 }}>{name}</h4>
+                                ))
                               }
                             </TableCell>
                             <TableCell>
                               <IconButton disabled={user.type === 'reader'}>
-                                <EditIcon onClick={e => { handleEdit(row) }} style={{ color: colors.blue[600], cursor: 'pointer' }} ></EditIcon>
+                                <EditIcon onClick={e => { handleEdit(row) }} style={{ color: colors.green[600], cursor: 'pointer' }} ></EditIcon>
                               </IconButton>
                               <IconButton disabled={user.type === 'reader'}>
-                                <DeleteIcon onClick={e => { handleRemove(row._id) }} style={{ color: colors.red[900], cursor: 'pointer' }} ></DeleteIcon>
+                                <DeleteIcon onClick={e => { handleRemove(row._id) }} style={{ color: colors.red[500], cursor: 'pointer' }} ></DeleteIcon>
                               </IconButton>
                             </TableCell>
                           </TableRow>

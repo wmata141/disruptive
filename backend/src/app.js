@@ -6,6 +6,7 @@ import authRoutes from './routes/authRoutes.js';
 import userRoutes from './routes/userRoutes.js';
 import categoryRoutes from './routes/categoryRoutes.js';
 import themeRoutes from './routes/themeRoutes.js';
+import contentRoutes from './routes/contentRoutes.js';
 
 const app = express();
 app.use(cors());
@@ -22,5 +23,6 @@ app.use('/auth', authRoutes);
 app.use('/user', userRoutes);
 app.use('/category', categoryRoutes);
 app.use('/theme', themeRoutes);
+app.use('/content', contentRoutes);
 
 export default app

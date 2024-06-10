@@ -3,11 +3,10 @@ import { useNavigate } from "react-router-dom";
 import { Box, Drawer, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Paper, Typography, colors } from '@mui/material';
 import DashboardCustomizeOutlinedIcon from '@mui/icons-material/DashboardCustomizeOutlined';
 import ChatBubbleOutlineOutlinedIcon from '@mui/icons-material/ChatBubbleOutlineOutlined';
-// import OtherHousesOutlinedIcon from '@mui/icons-material/OtherHousesOutlined';
-// import SavingsOutlinedIcon from '@mui/icons-material/SavingsOutlined';
+import OtherHousesOutlinedIcon from '@mui/icons-material/OtherHousesOutlined';
 import SwapHorizOutlinedIcon from '@mui/icons-material/SwapHorizOutlined';
 import Logout from '@mui/icons-material/Logout'
-import { images } from "../assets";
+import { assetsImg } from "../assets";
 import Animate from "./Animate";
 import { AuthContext } from "../services/AuthContext";
 
@@ -32,23 +31,18 @@ const serviceMenus = [
   },
 ];
 
-const investmentMenus = [
-  // {
-  //   title: "Finance advice",
-  //   icon: <ChatBubbleOutlineOutlinedIcon />,
-  //   state: "financeadvice"
-  // },
-  // {
-  //   title: "Savings accounts",
-  //   icon: <SavingsOutlinedIcon />,
-  //   state: "savingaccount"
-  // }
+const contentMenus = [
+  {
+    title: "Content",
+    icon: <OtherHousesOutlinedIcon />,
+    state: "content"
+  }
 ];
 
 const Sidebar = ({ sidebarWidth }) => {
   const [activeState, setActiveState] = useState('');
 
-  const { logout } = useContext(AuthContext);
+  const { user, logout } = useContext(AuthContext);
 
   const navigate = useNavigate();
 
@@ -101,13 +95,12 @@ const Sidebar = ({ sidebarWidth }) => {
       {/* logo */}
       <Box sx={{ textAlign: "center", mb: 2 }}>
         <Animate type="fade" delay={1}>
-          <img src={images.disruptive} alt="logo" height={60} />
+          <img src={assetsImg.disruptive} alt="logo" height={60} />
         </Animate>
       </Box>
       {/* logo */}
       <Animate sx={{ flexGrow: 1 }}>
         <Paper
-          // elevation={0}
           square
           sx={{
             borderTopRightRadius: "10px",
@@ -129,28 +122,30 @@ const Sidebar = ({ sidebarWidth }) => {
               ))}
             </List>
 
-            <List>
-              <ListItem>
-                <Typography fontWeight={600} mt={1} color={colors.grey[600]}>
-                  Services
-                </Typography>
-              </ListItem>
-              {serviceMenus.map((item, index) => (
-                <MenuItem
-                  key={index}
-                  item={item}
-                  isActive={item.state === activeState}
-                />
-              ))}
-            </List>
-
+            {user.type === 'admin' &&
+              <List>
+                <ListItem>
+                  <Typography fontWeight={600} mt={1} color={colors.grey[600]}>
+                    Services
+                  </Typography>
+                </ListItem>
+                {serviceMenus.map((item, index) => (
+                  <MenuItem
+                    key={index}
+                    item={item}
+                    isActive={item.state === activeState}
+                  />
+                ))}
+              </List>
+            }
+            
             <List>
               <ListItem>
                 <Typography fontWeight={600} mt={1} color={colors.grey[600]} >
-                  Investments
+                  Content
                 </Typography>
               </ListItem>
-              {investmentMenus.map((item, index) => (
+              {contentMenus.map((item, index) => (
                 <MenuItem
                   key={index}
                   item={item}

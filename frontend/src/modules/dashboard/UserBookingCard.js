@@ -1,7 +1,7 @@
 import React from 'react';
 import MPaper from './MPaper';
 import { Avatar, Box, Stack, Typography, colors } from '@mui/material';
-import { images } from '../../assets';
+import { assetsImg } from '../../assets';
 import CalendarMonthOutlinedIcon from '@mui/icons-material/CalendarMonthOutlined';
 import PeopleAltOutlinedIcon from '@mui/icons-material/PeopleAltOutlined';
 
@@ -11,7 +11,7 @@ const UserBookingCard = () => {
       <Stack spacing={3}>
         {/* user info */}
         <Stack direction="row" spacing={2}>
-          <Avatar alt="user" src={images.userProfile} />
+          <Avatar alt="user" src={assetsImg.userProfile} />
           <Stack justifyContent="space-between">
             <Typography variant="subtitle2">
               Tuat Tran
@@ -52,7 +52,7 @@ const UserBookingCard = () => {
             borderRadius: 8
           }
         }}>
-          <img src={images.bookingImage} alt="booking" />
+          <img src={assetsImg.bookingImage} alt="booking" />
         </Box>
         {/* image */}
       </Stack>

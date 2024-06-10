@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { Box, CircularProgress, Stack, Typography, circularProgressClasses, colors } from "@mui/material";
-import { images } from "../../assets";
+import { assetsImg } from "../../assets";
 import { AuthContext } from "../../services/AuthContext";
 import Animate from "../../components/Animate";
 import LogIn from './LogIn';
@@ -50,7 +50,7 @@ const LoginView = () => {
         backgroundPosition: "center",
         backgroundSize: "cover",
         backgroundRepeat: "no-repeat",
-        backgroundImage: `url(${images.wallpaper})`
+        backgroundImage: `url(${assetsImg.wallpaper})`
       }} />
       {/* background box */}
       {/* Login form */}
@@ -74,7 +74,7 @@ const LoginView = () => {
           {/* logo */}
           <Box sx={{ textAlign: "center", p: 5 }}>
             <Animate type="fade" delay={0.5}>
-              <img src={images.disruptive} alt="logo" height={60}></img>
+              <img src={assetsImg.disruptive} alt="logo" height={60}></img>
             </Animate>
           </Box>
           {/* logo */}

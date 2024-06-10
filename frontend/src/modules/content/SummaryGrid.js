@@ -8,17 +8,17 @@ const summaryData = [
   {
     title: "Total Booking",
     value: "714k",
-    image: assetsImg.summaryImages.totalBook
+    image: images.summaryImages.totalBook
   },
   {
     title: "Sold",
     value: "311k",
-    image: assetsImg.summaryImages.sold
+    image: images.summaryImages.sold
   },
   {
     title: "Canceled",
     value: "122k",
-    image: assetsImg.summaryImages.cancel
+    image: images.summaryImages.cancel
   }
 ];
 

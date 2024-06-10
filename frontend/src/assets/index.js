@@ -1,4 +1,4 @@
-export const images = {
+export const assetsImg = {
   wallpaper: require("./images/wallpaper.jpg"),
   summaryImages: {
     totalBook: require("./images/totalBook.png"),

@@ -4,23 +4,16 @@ import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { Button, CircularProgress, Dialog, DialogContent, DialogTitle, IconButton, Paper, Stack, Table, TableBody, TableCell, TableContainer, TableHead, TablePagination, TableRow, TextField, colors } from "@mui/material";
 import { getAllCategory, createCategory, updateCategory, deleteCategory } from './CategoryController'
-import { images } from "../../assets";
+import { assetsImg } from "../../assets";
 import { AuthContext } from "../../services/AuthContext";
 
 const API_URL = process.env.REACT_APP_API_URL
-
-const columns = [
-  { id: 'name', name: 'Name' },
-  { id: 'description', name: 'Description' },
-  { id: 'file', name: 'Image' },
-  { id: 'action', name: 'Action' }
-]
 
 const CategoryView = () => {
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
   const [file, setFile] = useState(null);
-  const [image, setImage] = useState(images.blankPhoto);
+  const [image, setImage] = useState(assetsImg.blankPhoto);
 
   const [editObj, setEditObj] = useState({});
   const [isEdit, isEditchange] = useState(false);
@@ -128,7 +121,7 @@ const CategoryView = () => {
     setName('');
     setDescription('');
     setFile(null);
-    setImage(images.blankPhoto)
+    setImage(assetsImg.blankPhoto)
   }
 
   const handleFileUpload = (event) => {
@@ -156,7 +149,7 @@ const CategoryView = () => {
       <Paper sx={{ margin: '1%' }}>
         <div style={{ margin: '1%', paddingTop: '1%' }}>
           <Button
-            style={{ backgroundColor: colors.blue[500], marginRight: '1%' }}
+            style={{ backgroundColor: colors.blue[500], marginRight: '1%', height: '2.5rem' }}
             onClick={functionAdd}
             variant="contained"
             disabled={user.type !== 'admin'}
@@ -177,10 +170,11 @@ const CategoryView = () => {
               <TableContainer>
                 <Table>
                   <TableHead>
-                    <TableRow style={{ backgroundColor: colors.blue[500] }}>
-                      {columns.map((column) =>
-                        <TableCell key={column.id} style={{ color: 'white' }}>{column.name}</TableCell>
-                      )}
+                    <TableRow style={{ backgroundColor: colors.blue[500] }}>                     
+                      <TableCell style={{ color: 'white' }} >{'Name'}</TableCell>
+                      <TableCell style={{ color: 'white' }} >{'Description'}</TableCell>
+                      <TableCell style={{ color: 'white' }} >{'Image'}</TableCell>
+                      <TableCell style={{ color: 'white', width: '120px' }} >{'Action'}</TableCell>
                     </TableRow>
                   </TableHead>
 
@@ -195,13 +189,13 @@ const CategoryView = () => {
                             <TableCell style={{ padding: 0 }}>
                               <img
                                 style={{ maxWidth: 75, maxHeight: 75, width: '-webkit-fill-available' }}
-                                src={row.filename ? `${API_URL}/uploads/${row.filename}` : images.blankPhoto}
+                                src={row.filename ? `${API_URL}/uploads/${row.filename}` : assetsImg.blankPhoto}
                                 alt="Imagen"
                               />
                             </TableCell>
                             <TableCell>
                               <IconButton onClick={e => { handleEdit(row) }} disabled={user.type !== 'admin'}>
-                                <EditIcon style={{ color: colors.blue[500], cursor: 'pointer' }} ></EditIcon>
+                                <EditIcon style={{ color: colors.green[500], cursor: 'pointer' }} ></EditIcon>
                               </IconButton>
                               <IconButton onClick={e => { handleRemove(row._id) }} disabled={user.type !== 'admin'}>
                                 <DeleteIcon style={{ color: colors.red[500], cursor: 'pointer' }} ></DeleteIcon>
@@ -257,6 +251,7 @@ const CategoryView = () => {
               <input
                 id="fileInput"
                 type="file"
+                accept="image/*"
                 style={{ display: 'none' }}
                 onChange={handleFileUpload}
               />
