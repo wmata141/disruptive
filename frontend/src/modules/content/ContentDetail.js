@@ -1,10 +1,9 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
 import { Grid, Box, Typography } from "@mui/material";
-import VideoPlayer from '../../components/VideoPlayer';
 import Animate from './Animate';
 import UserBookingCard from './UserBookingCard';
-
+import ReactPlayer from 'react-player'
 
 const ContentDetailView = () => {
   const location = useLocation();
@@ -47,7 +46,7 @@ const ContentDetailView = () => {
         </Animate>
       </Box>
 
-      <div style={{ margin: '1%', paddingTop: '1%', alignItems: 'baseline' }}>
+      <div style={{ margin: '1%', paddingTop: '1%', alignItems: 'baseline', marginBottom: 'inherit' }}>
         <Grid container spacing={3}>
           {
             detailContent.filenames && detailContent.filenames.map((item, index) => (
@@ -61,8 +60,9 @@ const ContentDetailView = () => {
         </Grid>
       </div>
 
-      <VideoPlayer video={detailContent.video} />
-      {/* <iframe src={'https://www.youtube.com/watch?v=bN-54_WLKaA&t=98s&ab_channel=davoudan'} title='YouToBe Video' allowFullScreen></iframe> */}
+      <div style={{ margin: '1%', paddingTop: '1%', alignItems: 'baseline', marginBottom: 'inherit' }}>
+        <ReactPlayer url={detailContent.video} />
+      </div>
     </div>
   );
 };
