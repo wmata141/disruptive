@@ -4,7 +4,7 @@ import Content from '../models/contentModel.js';
 export const getAllContent = async (req, res) => {
   try {
     // Get all categories from the database
-    const categories = await Content.find().populate('theme');
+    const categories = await Content.find().populate('theme').populate('user');    
 
     // Send a response to the client
     res.status(200).json(categories);
@@ -32,7 +32,7 @@ export const getContentById = async (req, res) => {
 
 export const postContent = async (req, res) => {
   try {
-    const { name, description, theme, video } = req.body;
+    const { name, description, theme, user, video } = req.body;
 
     // Check if a content with the same name already exists
     const existingContent = await Content.findOne({ name });
@@ -49,7 +49,7 @@ export const postContent = async (req, res) => {
     }
 
     // Create a new content
-    const newContent = new Content({ name, description, filenames, theme, video });
+    const newContent = new Content({ name, description, filenames, theme, user, video });
     await newContent.save();
 
     // Send a response to the client

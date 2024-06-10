@@ -138,7 +138,7 @@ const Sidebar = ({ sidebarWidth }) => {
                 ))}
               </List>
             }
-            
+
             <List>
               <ListItem>
                 <Typography fontWeight={600} mt={1} color={colors.grey[600]} >
@@ -155,6 +155,9 @@ const Sidebar = ({ sidebarWidth }) => {
             </List>
           </Box>
           <Box sx={{ textAlign: "center", mb: 2 }}>
+            <Typography fontWeight={600} mt={1} color={colors.grey[600]} >
+              {`${user.name} - ${user.type}`}
+            </Typography>
             <Logout style={{ cursor: 'pointer' }} onClick={logout} />
           </Box>
         </Paper>

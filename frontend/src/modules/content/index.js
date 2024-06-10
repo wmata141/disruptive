@@ -54,7 +54,7 @@ const ContentView = () => {
       setVideo(editObj.video);
     } else {
       clearState();
-    }        
+    }
   }, [editObj])
 
   useEffect(() => {
@@ -84,7 +84,7 @@ const ContentView = () => {
     setRowPerPage(+event.target.value);
     setPage(0);
   }
-
+  
   const functionAdd = () => {
     isEditchange(false);
     openPopup();
@@ -108,6 +108,7 @@ const ContentView = () => {
     objData.append("name", name)
     objData.append("description", description)
     objData.append("theme", theme._id)
+    objData.append("user", user._id)
     objData.append("video", video)
 
     // Añadir cada objeto File al FormData
@@ -193,7 +194,7 @@ const ContentView = () => {
   const handleDetail = (item) => {
     navigate(`/dashboard/content/detail`, { state: { item } });
   }
-  
+
   return (
     <div>
       <Paper sx={{ margin: '1%' }}>
@@ -237,12 +238,17 @@ const ContentView = () => {
                             <TableCell onClick={() => handleDetail(row)}>{row.description}</TableCell>
                             <TableCell onClick={() => handleDetail(row)}>{row.theme.name}</TableCell>
                             <TableCell align={'right'} >
-                              <IconButton disabled={user.type === 'reader'}>
-                                <EditIcon onClick={e => { handleEdit(row) }} style={{ color: colors.green[600], cursor: 'pointer' }} ></EditIcon>
-                              </IconButton>
-                              <IconButton disabled={user.type === 'reader'}>
-                                <DeleteIcon onClick={e => { handleRemove(row._id) }} style={{ color: colors.red[500], cursor: 'pointer' }} ></DeleteIcon>
-                              </IconButton>
+                              {
+                                user.type === 'admin' || (user._id === row.user._id && user.type === 'creator') &&
+                                <>
+                                  <IconButton>
+                                    <EditIcon onClick={e => { handleEdit(row) }} style={{ color: colors.green[600], cursor: 'pointer' }} ></EditIcon>
+                                  </IconButton>
+                                  <IconButton>
+                                    <DeleteIcon onClick={e => { handleRemove(row._id) }} style={{ color: colors.red[500], cursor: 'pointer' }} ></DeleteIcon>
+                                  </IconButton>
+                                </>
+                              }
                             </TableCell>
                           </TableRow>
                         )
@@ -375,7 +381,7 @@ const ContentView = () => {
           }
         </DialogContent>
       </Dialog>
-    </div>
+    </div >
   );
 }
 
