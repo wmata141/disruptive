@@ -239,7 +239,7 @@ const ContentView = () => {
                             <TableCell onClick={() => handleDetail(row)}>{row.theme.name}</TableCell>
                             <TableCell align={'right'} >
                               {
-                                user.type === 'admin' || (user._id === row.user._id && user.type === 'creator') &&
+                                user.type === 'admin' || user._id === row.user._id ?
                                 <>
                                   <IconButton>
                                     <EditIcon onClick={e => { handleEdit(row) }} style={{ color: colors.green[600], cursor: 'pointer' }} ></EditIcon>
@@ -248,6 +248,7 @@ const ContentView = () => {
                                     <DeleteIcon onClick={e => { handleRemove(row._id) }} style={{ color: colors.red[500], cursor: 'pointer' }} ></DeleteIcon>
                                   </IconButton>
                                 </>
+                                : null
                               }
                             </TableCell>
                           </TableRow>
