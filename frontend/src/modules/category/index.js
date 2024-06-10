@@ -34,7 +34,7 @@ const CategoryView = () => {
       setName(editObj.name);
       setDescription(editObj.description);
       setFile(editObj.file);
-      setImage(`${API_URL}/uploads/${editObj.filename}`)
+      setImage(editObj.file ? `${API_URL}/uploads/${editObj.filename}` : assetsImg.blankPhoto)
     } else {
       clearState();
     }
