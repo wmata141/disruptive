@@ -9,7 +9,12 @@ import themeRoutes from './routes/themeRoutes.js';
 import contentRoutes from './routes/contentRoutes.js';
 
 const app = express();
-app.use(cors());
+
+const corsOptions = {
+    origin: "http://localhost:3000" // frontend URI (ReactJS)
+}
+
+app.use(cors(corsOptions));
 
 // Enable uploads folder to show on endpoints
 app.use('/uploads', express.static('uploads'));

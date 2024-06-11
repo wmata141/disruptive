@@ -8,7 +8,7 @@ export const getAllCategory = async (req, res) => {
 
     // Send a response to the client
     res.status(200).json(categories);
-  } catch (error) {    
+  } catch (error) {
     res.status(500).json({ message: 'An error occurred while obtaining the categories' });
   }
 };
@@ -25,7 +25,7 @@ export const getCategoryById = async (req, res) => {
 
     // Send a response to the client
     res.status(200).json(category);
-  } catch (error) {    
+  } catch (error) {
     res.status(500).json({ message: 'An error occurred while obtaining the category' });
   }
 };
@@ -52,7 +52,7 @@ export const postCategory = async (req, res) => {
 
     // Send a response to the client
     res.status(201).json(newCategory);
-  } catch (error) {    
+  } catch (error) {
     res.status(500).json({ message: 'An error occurred while registering the category' });
   }
 };
@@ -69,20 +69,22 @@ export const updateCategory = async (req, res) => {
     }
 
     // Check if a category with the same name already exists
-    const existingCategory = await Category.find({ name });    
-    if (existingCategory.length > 1) {    
+    const existingCategory = await Category.find({ name });
+    if (existingCategory.length > 1) {
       return res.status(404).json({ message: 'There is already a category with the same name' });
     }
-        
+
     // Get file name if it exists to be delete
     let filename = null;
     if (req.file) {
       filename = req.file.filename;
 
       try {
-        fs.unlinkSync(`./uploads/${category.filename}`);
+        if (category.filename) {
+          fs.unlinkSync(`./uploads/${category.filename}`);
+        }
       } catch (fsError) {
-        console.error("updateCategory fsError ", fsError);        
+        console.error("updateCategory fsError ", fsError);
       }
     }
 
@@ -95,7 +97,7 @@ export const updateCategory = async (req, res) => {
 
     // Send a response to the client
     res.status(200).json(category);
-  } catch (error) {        
+  } catch (error) {
     res.status(500).json({ message: 'An error occurred while updating the category' });
   }
 };
@@ -112,9 +114,11 @@ export const deleteCategory = async (req, res) => {
 
     // Delete file
     try {
-      fs.unlinkSync(`./uploads/${category.filename}`);
+      if (category.filename) {
+        fs.unlinkSync(`./uploads/${category.filename}`);
+      }
     } catch (fsError) {
-      console.error("deleteCategory fsError :", fsError);      
+      console.error("deleteCategory fsError :", fsError);
     }
 
     // Delete the category from the database
@@ -122,7 +126,7 @@ export const deleteCategory = async (req, res) => {
 
     // Send a response to the client
     res.status(200).json(category);
-  } catch (error) {    
+  } catch (error) {
     res.status(500).json({ message: 'An error occurred while deleting the category' });
   }
 };

@@ -4,7 +4,7 @@ import Content from '../models/contentModel.js';
 export const getAllContent = async (req, res) => {
   try {
     // Get all categories from the database
-    const categories = await Content.find().populate('theme').populate('user');    
+    const categories = await Content.find().populate('theme').populate('user');
 
     // Send a response to the client
     res.status(200).json(categories);
@@ -77,21 +77,23 @@ export const updateContent = async (req, res) => {
     }
 
     // Get file name if it exists to be delete    
-    let filenames = [];    
+    let filenames = [];
     if (req.files.length > 0) {
 
       for (let index = 0; index < req.files.length; index++) {
-        const element = req.files[index].filename;        
+        const element = req.files[index].filename;
         filenames.push(element)
       }
 
       try {
         for (let index = 0; index < content.filenames.length; index++) {
-          const element = content.filenames[index];          
-          fs.unlinkSync(`./uploads/${element}`);
+          const element = content.filenames[index];
+          if (element) {
+            fs.unlinkSync(`./uploads/${element}`);
+          }
         }
       } catch (fsError) {
-        console.error("updateContent fsError ", fsError);
+        // console.error("updateContent fsError ", fsError);
       }
     }
 
@@ -124,11 +126,13 @@ export const deleteContent = async (req, res) => {
     // Delete file
     try {
       for (let index = 0; index < content.filenames.length; index++) {
-        const element = content.filenames[index];          
-        fs.unlinkSync(`./uploads/${element}`);
+        const element = content.filenames[index];
+        if (element) {
+          fs.unlinkSync(`./uploads/${element}`);
+        }
       }
     } catch (fsError) {
-      console.error("updateContent fsError ", fsError);
+      // console.error("updateContent fsError ", fsError);
     }
 
     // Delete the content from the database
