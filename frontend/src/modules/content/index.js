@@ -31,7 +31,7 @@ const ContentView = () => {
   const [allContent, setAllContent] = useState([]);
   const [contentList, setContentlist] = useState([]);
   const [allTheme, setAllTheme] = useState([]);
-
+  
   const { user } = useContext(AuthContext);
 
   const navigate = useNavigate();
@@ -241,11 +241,11 @@ const ContentView = () => {
                               {
                                 user.type === 'admin' || user._id === row.user._id ?
                                 <>
-                                  <IconButton>
-                                    <EditIcon onClick={e => { handleEdit(row) }} style={{ color: colors.green[600], cursor: 'pointer' }} ></EditIcon>
+                                  <IconButton onClick={e => { handleEdit(row) }}> 
+                                    <EditIcon style={{ color: colors.green[600], cursor: 'pointer' }} ></EditIcon>
                                   </IconButton>
-                                  <IconButton>
-                                    <DeleteIcon onClick={e => { handleRemove(row._id) }} style={{ color: colors.red[500], cursor: 'pointer' }} ></DeleteIcon>
+                                  <IconButton onClick={e => { handleRemove(row._id) }}>
+                                    <DeleteIcon style={{ color: colors.red[500], cursor: 'pointer' }} ></DeleteIcon>
                                   </IconButton>
                                 </>
                                 : null

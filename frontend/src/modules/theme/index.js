@@ -192,11 +192,11 @@ const ThemeView = () => {
                               }
                             </TableCell>
                             <TableCell>
-                              <IconButton disabled={user.type === 'reader'}>
-                                <EditIcon onClick={e => { handleEdit(row) }} style={{ color: colors.green[600], cursor: 'pointer' }} ></EditIcon>
+                              <IconButton disabled={user.type === 'reader'} onClick={e => { handleEdit(row) }}>
+                                <EditIcon style={{ color: colors.green[600], cursor: 'pointer' }} ></EditIcon>
                               </IconButton>
-                              <IconButton disabled={user.type === 'reader'}>
-                                <DeleteIcon onClick={e => { handleRemove(row._id) }} style={{ color: colors.red[500], cursor: 'pointer' }} ></DeleteIcon>
+                              <IconButton disabled={user.type === 'reader'} onClick={e => { handleRemove(row._id) }}>
+                                <DeleteIcon style={{ color: colors.red[500], cursor: 'pointer' }} ></DeleteIcon>
                               </IconButton>
                             </TableCell>
                           </TableRow>
