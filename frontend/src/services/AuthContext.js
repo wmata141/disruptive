@@ -1,24 +1,24 @@
 import React, { useState, useEffect, createContext } from 'react';
 
-// Creamos un contexto para manejar la autenticación
+// Create a context to manage authentication
 const AuthContext = createContext();
 
-// Definimos el componente Provider que será utilizado para proveer la información de autenticación a los componentes hijos
+// Define the Provider component that will be used to provide authentication information to child components
 const AuthProvider = ({ children }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [token, setToken] = useState(null);
   const [user, setUser] = useState(null);
 
-  // Estado para controlar si el usuario ha iniciado sesión  
-  // Estado para almacenar el token de autenticación
-  // Estado para almacenar la información del usuario autenticado
+  // State to control whether the user is logged in  
+  // State to store the authentication token
+  // State to store the authenticated user information
 
-  // Efecto que se ejecuta al iniciar el componente para verificar si hay un usuario autenticado en el almacenamiento local
+  // Effect that runs when the component mounts to check if there is an authenticated user in local storage
   useEffect(() => {
     const userJson = localStorage.getItem("user");
     const storageJwt = localStorage.getItem("token");
 
-    // Si hay un usuario y un token en el almacenamiento local, se establecen en el estado
+    // If there is a user and a token in local storage, set them in the state
     if (Boolean(userJson) && Boolean(storageJwt)) {
       const userObj = JSON.parse(userJson);
       setUser(userObj);
@@ -28,29 +28,29 @@ const AuthProvider = ({ children }) => {
 
   }, []);
 
-  // Función para iniciar sesión
+  // Function to log in
   const login = (userObj, token) => {
     setIsLoggedIn(true);
     setUser(userObj);
     setToken(token);
 
-    // Se almacena la información del usuario y el token en el almacenamiento local
+    // Store the user information and token in local storage
     const userJson = JSON.stringify(userObj);
     localStorage.setItem("user", userJson);
     localStorage.setItem("token", token);
   }
 
-  // Función para cerrar sesión
+  // Function to log out
   const logout = () => {
     setIsLoggedIn(false);
     setToken(null);
     setUser(null);
-    // Se eliminan los datos de usuario y token del almacenamiento local
+    // Remove user data and token from local storage
     localStorage.removeItem("user");
     localStorage.removeItem("token");
   }
 
-  // Se provee el contexto con la información de autenticación y las funciones de login y logout a los componentes hijos
+  // Provide the context with authentication information and the login and logout functions to child components
   return (
     <AuthContext.Provider value={{ user, token, isLoggedIn, login, logout, setIsLoggedIn }}>
       {children}
@@ -58,5 +58,5 @@ const AuthProvider = ({ children }) => {
   );
 };
 
-// Exportamos el contexto y el componente Provider para ser utilizados en otros componentes
+// Export the context and Provider component to be used in other components
 export { AuthContext, AuthProvider };
