@@ -25,7 +25,7 @@ const LogIn = (props) => {
         props.setOnRequest(false);
       }, 1000);
 
-      return toast.warning('El formulario contiene campos vacios')
+      return toast.warning('The form contains empty fields')
     }
 
     const objData = {
